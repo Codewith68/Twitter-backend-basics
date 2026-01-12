@@ -2,6 +2,8 @@ import express from 'express';
 import morgan from 'morgan';
 // import path from 'path';
 import 'ejs';
+import {PORT} from './config/serverConfig.js';
+import apiRouter from './routes/apiRoutes.js';
 //create a new express app or object
 const app=express();
 
@@ -11,6 +13,9 @@ app.use(express.json()); //middleware to parse json body
 app.use(express.text()); //middleware to parse text body
 app.use(express.urlencoded({extended:true})); //middleware to parse urlencoded body
 app.set('views',import.meta.dirname+'/views')
+app.use('/api',apiRouter); //use the api router for /api route
+
+//define a route handler for the /ping route with multiple middlewares
 function mid1(req,res,next){
     console.log("mid1");
     next();
@@ -32,13 +37,7 @@ app.get('/ping',[mid1,mid2,mid3],(req,res)=>{
 app.get('/',(req,res)=>{
     res.render('home', {miri:'debbu'});
 });
-app.post('/tweets/:tweetId/comments/:commentId',(req,res)=>{
-    console.log('req.params:',req.params);
-    console.log('req.body:',req.body); 
-    return res.json({
-        message:'comment created',
-    })
-});
+
 
 
 app.use((req,res)=>{
@@ -46,7 +45,7 @@ app.use((req,res)=>{
         message:'route not found'
     });
 });
-// define a PORT and attacth it to the express app 
-app.listen(3000,()=>{
-    console.log("server is running on port 3000");
+// define a PORT and attach it to the express app 
+app.listen(PORT,()=>{
+    console.log(`Server started on port ${PORT}`);
 })
