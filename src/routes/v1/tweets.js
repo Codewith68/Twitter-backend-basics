@@ -1,18 +1,12 @@
 import express from 'express';
+import {getTweetId,getTweets,createTweet} from '../../controllers/tweetController.js';
 
 const router = express.Router(); // create a new router object
-router.get('/',(req,res)=>{
-    return res.json({
-        message:'tweets',
-    })
-});
+router.get('/',getTweets);
 
-router.get('/:id',(req,res)=>{
-    const {id} = req.params;
-    return res.json({
-        message:`tweet with id ${id}`,
-    })
-});
+router.get('/:id',getTweetId);
+
+router.post('/',createTweet);
 
 
 export default router; // export the router object
