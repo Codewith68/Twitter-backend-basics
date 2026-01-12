@@ -1,4 +1,4 @@
-import Tweet from "../schema/tweet";
+import Tweet from "../schema/tweet.js";
 
 
 
