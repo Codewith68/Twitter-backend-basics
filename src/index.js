@@ -4,6 +4,9 @@ import morgan from 'morgan';
 import 'ejs';
 import {PORT} from './config/serverConfig.js';
 import apiRouter from './routes/apiRoutes.js';
+import { connect } from 'mongoose';
+import { connectDB, closeDB } from './config/dbConfig.js';
+
 //create a new express app or object
 const app=express();
 
@@ -48,4 +51,5 @@ app.use((req,res)=>{
 // define a PORT and attach it to the express app 
 app.listen(PORT,()=>{
     console.log(`Server started on port ${PORT}`);
+    connectDB();
 })

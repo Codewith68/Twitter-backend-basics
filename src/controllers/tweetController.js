@@ -11,7 +11,16 @@ export const getTweetId = (req, res) => {
     });
 };
 export const createTweet = (req, res) => {  
+    console.log('createTweet handler invoked');
     return res.json({
-        message: 'tweet created'
+        message: 'tweet created '
     });
 };  
+
+export const updateTweet = (req, res) => {
+    const { id } = req.params;
+    console.log('updateTweet handler invoked');
+    return res.json({
+        message: `tweet updated with id ${id}`  
+    });
+};

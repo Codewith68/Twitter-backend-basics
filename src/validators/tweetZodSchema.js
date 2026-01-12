@@ -1,0 +1,6 @@
+import { z } from 'zod';
+
+export const tweetZodSchema = z.object({
+    body:z.string().min(1).max(140),
+    // user_id: z.number().int().positive()
+});
