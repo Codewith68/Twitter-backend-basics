@@ -1,6 +1,6 @@
 export const validate =(schema)=>{
     // it returns a middleware function that validates the request body using the provided schema
-    return async (req, res, next) => {
+    return async function middleware(req, res, next)  {
         try {
             console.log(req.body);
             schema.parse(req.body);

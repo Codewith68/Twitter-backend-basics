@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from 'express';
 import morgan from 'morgan';
 // import path from 'path';
@@ -6,6 +9,7 @@ import {PORT} from './config/serverConfig.js';
 import apiRouter from './routes/apiRoutes.js';
 import { connect } from 'mongoose';
 import { connectDB, closeDB } from './config/dbConfig.js';
+
 
 //create a new express app or object
 const app=express();
