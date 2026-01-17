@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 
-export const errorResponse = (error)=>
+export const errorResponse = (res, error)=>
     {
         console.log(error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({

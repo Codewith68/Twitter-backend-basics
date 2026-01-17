@@ -5,7 +5,7 @@ import { createTweet as createTweetService ,
   deletTweetById as deleteTweetByIdService,
 updateTweet as updateTweetService  } from "../service/tweetService.js";
 import { StatusCodes } from "http-status-codes";
-import { successResponse } from "../utils/responses.js";
+import { successResponse, errorResponse } from "../utils/responses.js";
 
 
 
@@ -24,7 +24,7 @@ export const createTweet = async (req, res) => {
       data: response
     });
   } catch (error) {
-    errorResponse();
+    errorResponse(res, error);
   }
 };
 
@@ -36,7 +36,7 @@ export const getTweets = async (req,res)=>{
     }
   catch(error)
   {
-      errorResponse();
+      errorResponse(res, error);
 }
 }
 
@@ -50,7 +50,7 @@ export const getTweetId =async(req,res)=>{
   }
   catch(error)
   {
-    errorResponse();
+    errorResponse(res, error);
   }
 }
 
@@ -62,7 +62,7 @@ export const deletTweetById =async(req,res)=>{
         const response=await deleteTweetByIdService(id);
         return  successResponse(res, `weets deleted   successfully with id ${id}`, response);
   }
-    catch(error){errorResponse()
+    catch(error){errorResponse(res, error);
     }
   }
 
@@ -73,7 +73,7 @@ export const deletTweetById =async(req,res)=>{
         return successResponse(res, ` Tweets update  successfully with id  ${id}`, response);
     }
     catch(error){
-      errorResponse();
+      errorResponse(res, error);
   }
 }
 
